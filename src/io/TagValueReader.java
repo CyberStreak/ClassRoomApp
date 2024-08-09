@@ -22,15 +22,9 @@ public class TagValueReader implements CourseDataReader {
     @Override
     public Optional<Course> readData() {
 
-        Scanner fileScanner;
-        try {
-            fileScanner = new Scanner(courseDataFile);
-        } catch (FileNotFoundException e) {
-            System.err.println("File not found: " + courseDataFile.getAbsolutePath());
-            return Optional.empty();
-        }
-
-        String courseID = fileScanner.nextLine().split(":")[1].trim();
+        try (Scanner fileScanner = new Scanner(courseDataFile)) {
+            // code to read data from the file
+            String courseID = fileScanner.nextLine().split(":")[1].trim();
         String courseName = fileScanner.nextLine().split(":")[1].trim();
 
         ArrayList<Student> students = new ArrayList<>();
@@ -61,7 +55,13 @@ public class TagValueReader implements CourseDataReader {
             }
             students.add(student);
         }
+        
         Course course = new Course(courseID, courseName, students);
         return Optional.of(course);
+
+        } catch (FileNotFoundException e) {
+            System.err.println("File not found: " + courseDataFile.getAbsolutePath());
+            return Optional.empty();
+        }
     }
 }
