@@ -1,0 +1,21 @@
+# Project exclude paths
+/out/
+.idea/
+*.iml
+*.log
+*.class
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+*.7z
+*.bak
+*.tmp
+*.swp
+*.DS_Store
+node_modules/
+target/
+build/
+dist/
